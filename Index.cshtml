@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+@model IEnumerable<mvcADONET.Models.Product>
+
+<h2>Product List</h2>
+<a href="@Url.Action("Create", "Product")" class="btn btn-success">Create New Product</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ProductId</th>
+            <th>ProductName</th>
+            <th>CategoryId</th>
+            <th>CategoryName</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductId</td>
+                <td>@product.ProductName</td>
+                <td>@product.CategoryId</td>
+                <td>@product.CategoryName</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Product", new { id = product.ProductId })" class="btn btn-primary">Edit</a>
+                    <a href="@Url.Action("Delete", "Product", new { id = product.ProductId })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Pagination -->
+<div>
+    @if (ViewBag.Page > 1)
+    {
+        <a href="@Url.Action("Index", "Product", new { page = ViewBag.Page - 1 })" class="btn btn-info">Previous</a>
+    }
+
+    <a href="@Url.Action("Index", "Product", new { page = ViewBag.Page + 1 })" class="btn btn-info">Next</a>
+</div>
+
+

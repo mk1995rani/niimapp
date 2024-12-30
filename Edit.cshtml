@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Edit Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";  // Adjust the layout if necessary
+}
+
+<h2>Edit Product</h2>
+
+@model mvcADONET.Models.Product
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.ProductId)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProductName, "Product Name")
+        @Html.EditorFor(model => model.ProductName, new { @class = "form-control", placeholder = "Enter product name" })
+        @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryId, "Category")
+        @Html.DropDownListFor(model => model.CategoryId, (SelectList)ViewBag.Categories, "Select Category", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a href="@Url.Action("Index", "Product")" class="btn btn-secondary">Cancel</a>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")  <!-- Include jQuery validation script -->
+}
