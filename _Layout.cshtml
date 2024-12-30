@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="padding:0">
+    <nav class="navbar navbar-expand-sm bg-info navbar-dark">
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 text-white" style="background-color:#fa8405;min-height:685px;padding:0px">
+                <div class="list-group">
+                    <a href="@Url.Action("Index", "Product")" class="list-group-item text-white" style="background-color:transparent">Product</a>
+                    <a href="@Url.Action("Index", "Category")" class="list-group-item text-white" style="background-color:transparent">Category</a>
+                    @RenderSection("Sidebaroption", required: false)
+                </div>
+            </div>
+            <div class="col-10" style="min-height:610px ">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
